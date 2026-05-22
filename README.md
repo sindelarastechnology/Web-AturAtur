@@ -77,8 +77,9 @@ Komponen penting aplikasi:
 ```mermaid
 flowchart TD
   A[Klien WA Admin] --> B[Admin Buat Akun Client]
-  B --> C[Admin kirim verification_code via WA]
+  B --> C[Admin kirim kode verifikasi via WA]
 ```
+
 
 ### 2) Login & Aktivasi Klien
 1. Klien login ke panel client (`/dashboard`).
@@ -88,9 +89,10 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-  A[Klien menerima kode verifikasi] --> B[Klien login di /dashboard]
+  A[Klien menerima kode verifikasi] --> B[Klien login di dashboard]
   B --> C[Klien masuk panel Filament]
 ```
+
 
 ### 3) Pembuatan Undangan oleh Klien (CRUD di Filament)
 1. Klien mengisi identitas undangan:
@@ -107,9 +109,10 @@ flowchart TD
 flowchart TD
   A[Login Client] --> B[Kelola Invitation]
   B --> C[Isi data mempelai & konten]
-  B --> D[Tema ditentukan admin (disabled)]
-  B --> E[Simpen perubahan]
+  B --> D[Tema ditentukan admin]
+  B --> E[Simpan perubahan]
 ```
+
 
 ### 4) Manajemen Tamu + RSVP Link Personal
 1. Klien import/export tamu.
@@ -126,9 +129,10 @@ flowchart TD
 flowchart TD
   A[Kelola Tamu] --> B[Import/Export CSV]
   B --> C[Isi nama & telepon tamu]
-  C --> D[生成 link personal: /{invitation.slug}/{guest.slug}]
+  C --> D[Buat link personal]
   D --> E[Bagikan WA per tamu]
 ```
+
 
 ### 5) Tamu Membuka Undangan (Public)
 1. Tamu membuka URL:
@@ -143,11 +147,12 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-  A[Tamu buka URL] --> B[InvitationPublicController@show]
-  B --> C[Track view via TrackInvitationView]
-  B --> D[Render tema: invitation.theme]
-  D --> E[Tampilkan event, galeri, dan form RSVP/ucapan]
+  A[Tamu buka URL] --> B[Load undangan]
+  B --> C[Track view]
+  B --> D[Render tema]
+  D --> E[Tampilkan event, galeri, RSVP/ucapan]
 ```
+
 
 ### 6) RSVP & Ucapan
 #### RSVP
@@ -164,12 +169,13 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-  A[Tamu pilih RSVP] --> B[POST /rsvp/{guest}]
+  A[Tamu pilih RSVP] --> B[Kirim RSVP]
   B --> C[Validasi data]
-  C --> D[Cek event pertama sudah lewat?]
+  C --> D[Cek event pertama]
   D -->|tidak| E[Simpan RSVP ke Guest]
   D -->|ya| F[Tolak: batas lewat]
 ```
+
 
 #### Ucapan (Wish)
 1. Tamu mengirim ucapan ke `POST /wishes/{invitation}`
