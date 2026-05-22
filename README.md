@@ -80,7 +80,6 @@ flowchart TD
   B --> C[Admin kirim kode verifikasi via WA]
 ```
 
-
 ### 2) Login & Aktivasi Klien
 1. Klien login ke panel client (`/dashboard`).
 2. Klien menggunakan kredensial yang diberikan admin.
